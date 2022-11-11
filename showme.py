@@ -61,13 +61,14 @@ if model_name:
     model_save_path += f'/{model_name}.pt'
     tags_save_path+= f'/{model_name}_tags.csv'
 else:
-    model_save_path += 'model.pt'
+    model_save_path += '/model.pt'
     tags_save_path+= '/tags.csv'
 
 
 class_dir = f'{data_dir}/train'
 
 classes = next(os.walk(class_dir))[1]
+classes = sorted(classes)
 print('Se encontraron las siguientes clases en el directorio de entrenamiento:')
 print('id\tnombre')
 for i, c in enumerate(classes, start=0):
@@ -75,7 +76,7 @@ for i, c in enumerate(classes, start=0):
 
 try:
     n = len(classes)
-    training.get_trained_net(data_dir,n,device=training.ACTIVE_DEVICE,save_route=model_save_path)
+    training.get_trained_net(data_dir,n,num_epochs=6,device=training.ACTIVE_DEVICE,save_route=model_save_path)
 except Exception:
     print('Ocurrio un error inesperado durante el entrenamiento, abortando..')
     sys.exit(-1)
