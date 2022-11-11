@@ -1,7 +1,7 @@
 import argparse
 import training
 import os
-import csv
+import json
 import sys
 
 
@@ -23,7 +23,7 @@ parser.add_argument('-t', '--tags', default='./tags',
                     type=str,
                     help='Indica donde guardar las etiquetas de entrenamieto si no se da una \
                           ruta, las guarda en el directorio root por defecto, si se usa sin la badera \
-                          -n se nombrará automaticamente al archivo tags.csv')
+                          -n se nombrará automaticamente al archivo tags.json')
 
 parser.add_argument('-n', '--name', default=None,
                     type=str,
@@ -59,31 +59,31 @@ if not os.path.isdir(tags_save_path):
 
 if model_name:
     model_save_path += f'/{model_name}.pt'
-    tags_save_path+= f'/{model_name}_tags.csv'
+    tags_save_path+= f'/{model_name}_tags.json'
 else:
     model_save_path += '/model.pt'
-    tags_save_path+= '/tags.csv'
+    tags_save_path+= '/tags.json'
 
 
 class_dir = f'{data_dir}/train'
 
 classes = next(os.walk(class_dir))[1]
 classes = sorted(classes)
+tags = {}
 print('Se encontraron las siguientes clases en el directorio de entrenamiento:')
 print('id\tnombre')
 for i, c in enumerate(classes, start=0):
     print(f'{i}\t{c}')
+    tags[i] = c
 
 try:
     n = len(classes)
-    training.get_trained_net(data_dir,n,num_epochs=6,device=training.ACTIVE_DEVICE,save_route=model_save_path)
+    #training.get_trained_net(data_dir,n,num_epochs=8,device=training.ACTIVE_DEVICE,save_route=model_save_path)
 except Exception:
     print('Ocurrio un error inesperado durante el entrenamiento, abortando..')
     sys.exit(-1)
 
-classes = [ [c] for c in classes]
+json_object = json.dumps(tags, indent=0)
 with open(tags_save_path, 'w', encoding='UTF8') as f:
-    writer = csv.writer(f)
-    writer.writerows(classes)
-
+    f.write(json_object)
 sys.exit(0)
