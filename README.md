@@ -14,9 +14,7 @@ pip3 install -r requeriments.txt
 ## showme.py
 Este módulo de python se encarga de transferir el conocimiento de la red [squeeznet](https://pytorch.org/hub/pytorch_vision_squeezenet/) a un nuevo modelo, entrenado en base a un nuevo dataset proporcionado. 
 
-## whatUsee.py  :construction_worker_man:
+## whatUsee.py 
 
-*Aún en desarrollo*
-
-Este módulo tomará una red ya entrenada a la cual podremos alimentar y nos dirá cual es la clase a la que con mayor probabiliad pertence.
+Este módulo tomá una red ya entrenada, por el script `showme.py`, a la cual podremos alimentar, con imagenes y nos dirá cual es la clase a la que con mayor probabiliad pertenece.
 
