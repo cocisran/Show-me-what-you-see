@@ -10,7 +10,7 @@ import copy
 # Codigo extraido del tutorial de Nathan Inkawhich
 # https://pytorch.org/tutorials/beginner/finetuning_torchvision_models_tutorial.html
 
-def train_model(model, dataloaders, criterion, optimizer, num_epochs=25,device="cuda"):
+def train_model(model, dataloaders, criterion, optimizer, num_epochs=15,device="cuda"):
     '''
     Maneja el entrenamiento y la validacion del modelo pasado por parametro
     :model:         modelo de red a entrenar
@@ -28,7 +28,7 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25,device="
     best_acc = 0.0
 
     for epoch in range(num_epochs):
-        print('Epoch {}/{}'.format(epoch, num_epochs - 1))
+        print('Epoch {}/{}'.format(epoch+1, num_epochs))
         print('-' * 10)
 
         # Each epoch has a training and validation phase
