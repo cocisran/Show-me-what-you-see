@@ -4,6 +4,9 @@
 data/
 models/
 tags/
+# Modelos guardados
+*.pt
+*.csv 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
