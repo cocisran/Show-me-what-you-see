@@ -78,7 +78,7 @@ for i, c in enumerate(classes, start=0):
 
 try:
     n = len(classes)
-    #training.get_trained_net(data_dir,n,num_epochs=8,device=training.ACTIVE_DEVICE,save_route=model_save_path)
+    training.get_trained_net(data_dir,n,num_epochs=8,device=training.ACTIVE_DEVICE,save_route=model_save_path)
 except Exception:
     print('Ocurrio un error inesperado durante el entrenamiento, abortando..')
     sys.exit(-1)
